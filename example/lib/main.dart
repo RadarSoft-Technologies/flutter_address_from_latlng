@@ -111,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
           String address = await FlutterAddressFromLatLng().t(
             23.827111,
             90.420065,
-            'AIzaSyC6CmCq98mNH45TLTe7-HewwvDwUKVUJZ4',
+            '',
           );
           print(address);
         },
