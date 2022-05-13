@@ -84,18 +84,16 @@ class AddressService implements AddressFromLatLngInterface{
     String premiseAddress = _getMaxString(premiseAddressList);
     String streetAddress = _getMaxString(streetAddressList);
     String subLocalityAddress = _getMaxString(subLocalityAddressList);
-
+    String firstAddress = myAddress.results[0].formattedAddress ?? '';
 
     String finalAddress = premiseAddress.length > streetAddress.length ? premiseAddress : streetAddress;
     finalAddress = finalAddress.length > subLocalityAddress.length ? finalAddress : subLocalityAddress;
+    finalAddress = finalAddress.length > firstAddress.length ? finalAddress : firstAddress;
 
-    if(finalAddress.isEmpty){
-      finalAddress = myAddress.results[0].formattedAddress ?? '';
-    }
-
-    print('premise address      = $premiseAddress');
+    print('\n\npremise address      = $premiseAddress');
     print('street address       = $streetAddress');
     print('sub-locality address = $subLocalityAddress');
+    print('first address        = ${myAddress.results.first.formattedAddress}');
 
     return finalAddress;
   }
