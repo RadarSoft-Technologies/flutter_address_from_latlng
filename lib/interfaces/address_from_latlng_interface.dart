@@ -1,5 +1,5 @@
 abstract class AddressFromLatLngInterface {
-  Future<String> getMostPerfectAddress({
+  Future<String> getFormattedAddress({
     required double latitude,
     required double longitude,
     required String gApiKey,
