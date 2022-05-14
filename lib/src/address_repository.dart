@@ -13,15 +13,15 @@ class AddressRepository {
   ///
   /// [latitude] the latitude of the place that we wand to get address
   /// [longitude] the longitude of the place that we want to get address
-  /// [gApiKey] is the key to access Google Geo APIs
+  /// [googleApiKey] is the key to access Google Geo APIs
   Future<AddressResponse?> getAddressFromCoordinate({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) async {
     try {
       final Uri url = Uri.parse(
-        'https://maps.googleapis.com/maps/api/geocode/json?latlng=$latitude,$longitude&key=$gApiKey',
+        'https://maps.googleapis.com/maps/api/geocode/json?latlng=$latitude,$longitude&key=$googleApiKey',
       );
       final response = await http.get(url);
       if (response.statusCode == 200) {

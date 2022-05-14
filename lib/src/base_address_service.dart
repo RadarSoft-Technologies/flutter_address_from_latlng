@@ -9,11 +9,11 @@ abstract class BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<String> getFormattedAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   });
 
   /// Return premise address if available else returns null
@@ -23,11 +23,11 @@ abstract class BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<Address?> getPremiseAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   });
 
   /// Returns street address if available else returns null
@@ -36,11 +36,11 @@ abstract class BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<Address?> getStreetAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   });
 
   /// Returns route address if available else returns null
@@ -49,11 +49,11 @@ abstract class BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<Address?> getDirectionAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   });
 
   /// Return establishment address if available else return null
@@ -63,22 +63,22 @@ abstract class BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<Address?> getEstablishmentAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   });
 
   /// Returns plus_code address if available else returns null
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<Address?> getPlusCodeAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   });
 
   /// Returns NeighborHood address if available else returns null
@@ -88,11 +88,11 @@ abstract class BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<Address?> getNeighborhoodAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   });
 
   /// Returns the administrative address level 1 information
@@ -100,11 +100,11 @@ abstract class BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<Address?> getAdministrativeAddress1({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   });
 
   /// Returns the administrative address level 2 information
@@ -112,11 +112,11 @@ abstract class BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<Address?> getAdministrativeAddress2({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   });
 
   /// Returns the administrative address level 3 information
@@ -124,11 +124,11 @@ abstract class BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<Address?> getAdministrativeAddress3({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   });
 
   /// return Country Address if available else returns null
@@ -138,10 +138,10 @@ abstract class BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<Address?> getCountryAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   });
 }

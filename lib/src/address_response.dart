@@ -1,4 +1,4 @@
-
+library address_response;
 /// A data class
 ///
 /// Represents a HTTP response body from google geocode api

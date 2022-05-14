@@ -121,17 +121,17 @@ class AddressService implements BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<Address?> _getAddressByType({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
     required AddressType addressType,
   }) async {
     AddressResponse? myAddress = await repository.getAddressFromCoordinate(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
     );
 
     if (myAddress == null) {
@@ -154,17 +154,17 @@ class AddressService implements BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   @override
   Future<String> getFormattedAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) async {
     AddressResponse? myAddress = await repository.getAddressFromCoordinate(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
     );
 
     return _filterAndGetFormattedAddress(myAddress: myAddress);
@@ -177,17 +177,17 @@ class AddressService implements BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   @override
   Future<Address?> getPremiseAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) async {
     return _getAddressByType(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
       addressType: AddressType.premise,
     );
   }
@@ -198,17 +198,17 @@ class AddressService implements BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   @override
   Future<Address?> getStreetAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) {
     return _getAddressByType(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
       addressType: AddressType.street_address,
     );
   }
@@ -219,17 +219,17 @@ class AddressService implements BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   @override
   Future<Address?> getDirectionAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) async {
     return _getAddressByType(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
       addressType: AddressType.route,
     );
   }
@@ -241,17 +241,17 @@ class AddressService implements BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   @override
   Future<Address?> getEstablishmentAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) {
     return _getAddressByType(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
       addressType: AddressType.establishment,
     );
   }
@@ -260,17 +260,17 @@ class AddressService implements BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   @override
   Future<Address?> getPlusCodeAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) {
     return _getAddressByType(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
       addressType: AddressType.plus_code,
     );
   }
@@ -282,17 +282,17 @@ class AddressService implements BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   @override
   Future<Address?> getNeighborhoodAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) {
     return _getAddressByType(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
       addressType: AddressType.neighborhood,
     );
   }
@@ -302,17 +302,17 @@ class AddressService implements BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   @override
   Future<Address?> getAdministrativeAddress1({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) {
     return _getAddressByType(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
       addressType: AddressType.administrative_area_level_1,
     );
   }
@@ -322,17 +322,17 @@ class AddressService implements BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   @override
   Future<Address?> getAdministrativeAddress2({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) {
     return _getAddressByType(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
       addressType: AddressType.administrative_area_level_2,
     );
   }
@@ -342,17 +342,17 @@ class AddressService implements BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   @override
   Future<Address?> getAdministrativeAddress3({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) {
     return _getAddressByType(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
       addressType: AddressType.administrative_area_level_3,
     );
   }
@@ -364,17 +364,17 @@ class AddressService implements BaseAddressService {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   @override
   Future<Address?> getCountryAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) {
     return _getAddressByType(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
       addressType: AddressType.country,
     );
   }

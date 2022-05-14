@@ -1,4 +1,5 @@
 library flutter_address_from_latlng;
+export 'src/address_response.dart';
 
 import 'package:flutter_address_from_latlng/src/base_address_service.dart';
 import 'package:flutter_address_from_latlng/src/address_service.dart';
@@ -27,16 +28,16 @@ class FlutterAddressFromLatLng {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
-  Future<String> getFormattedAddress(
-    double latitude,
-    double longitude,
-    String googleApiKey,
-  ) async {
+  /// [googleApiKey] the api key to get access of google geocoding apis
+  Future<String> getFormattedAddress({
+    required double latitude,
+    required double longitude,
+    required String googleApiKey,
+  }) async {
     return _instance.getFormattedAddress(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: googleApiKey,
+      googleApiKey: googleApiKey,
     );
   }
 
@@ -47,16 +48,16 @@ class FlutterAddressFromLatLng {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<Address?> getPremiseAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) async {
     return _instance.getPremiseAddress(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
     );
   }
 
@@ -66,28 +67,28 @@ class FlutterAddressFromLatLng {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<Address?> getStreetAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) async {
     return _instance.getStreetAddress(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
     );
   }
 
   Future<Address?> getDirectionAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) async {
     return _instance.getDirectionAddress(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
     );
   }
 
@@ -97,16 +98,16 @@ class FlutterAddressFromLatLng {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<Address?> getEstablishmentAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) async {
     return _instance.getEstablishmentAddress(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
     );
   }
 
@@ -114,16 +115,16 @@ class FlutterAddressFromLatLng {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<Address?> getPlusCodeAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) async {
     return _instance.getPlusCodeAddress(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
     );
   }
 
@@ -134,16 +135,16 @@ class FlutterAddressFromLatLng {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<Address?> getNeighborhoodAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) async {
     return _instance.getNeighborhoodAddress(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
     );
   }
 
@@ -152,16 +153,16 @@ class FlutterAddressFromLatLng {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<Address?> getAdministrativeAddress1({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) async {
     return _instance.getAdministrativeAddress1(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
     );
   }
 
@@ -170,16 +171,16 @@ class FlutterAddressFromLatLng {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<Address?> getAdministrativeAddress2({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) async {
     return _instance.getAdministrativeAddress2(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
     );
   }
 
@@ -188,16 +189,16 @@ class FlutterAddressFromLatLng {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<Address?> getAdministrativeAddress3({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) async {
     return _instance.getAdministrativeAddress3(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
     );
   }
 
@@ -208,16 +209,16 @@ class FlutterAddressFromLatLng {
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address
-  /// [gApiKey] the api key to get access of google geocoding apis
+  /// [googleApiKey] the api key to get access of google geocoding apis
   Future<Address?> getCountryAddress({
     required double latitude,
     required double longitude,
-    required String gApiKey,
+    required String googleApiKey,
   }) async {
     return _instance.getCountryAddress(
       latitude: latitude,
       longitude: longitude,
-      gApiKey: gApiKey,
+      googleApiKey: googleApiKey,
     );
   }
 }
