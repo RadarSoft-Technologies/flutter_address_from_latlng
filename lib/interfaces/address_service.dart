@@ -32,7 +32,9 @@ class AddressService implements AddressFromLatLngInterface {
   /// [premiseAddressList], [subLocalityAddressList] and make a decision which
   /// address is more informative
   String _filterAndGetFormattedAddress({required AddressResponse? myAddress}) {
-    if (myAddress == null || myAddress.status != 'OK' || myAddress.results.isEmpty) {
+    if (myAddress == null ||
+        myAddress.status != 'OK' ||
+        myAddress.results.isEmpty) {
       return '';
     }
 
@@ -64,10 +66,13 @@ class AddressService implements AddressFromLatLngInterface {
       }
     }
 
-    String premiseAddress = stringUtils.getMaxStringFromList(premiseAddressList);
+    String premiseAddress =
+        stringUtils.getMaxStringFromList(premiseAddressList);
     String streetAddress = stringUtils.getMaxStringFromList(streetAddressList);
-    String subLocalityAddress = stringUtils.getMaxStringFromList(subLocalityAddressList);
-    String establishmentAddress = stringUtils.getMaxStringFromList(establishmentAddressList);
+    String subLocalityAddress =
+        stringUtils.getMaxStringFromList(subLocalityAddressList);
+    String establishmentAddress =
+        stringUtils.getMaxStringFromList(establishmentAddressList);
     String firstAddress = myAddress.results[0].formattedAddress ?? '';
 
     List<String> tempList = [
@@ -80,7 +85,6 @@ class AddressService implements AddressFromLatLngInterface {
 
     return stringUtils.getMaxStringFromList(tempList);
   }
-
 
   /// returns a string [key] according to given [addressType]
   String getKeyByType(AddressType addressType) {
@@ -114,6 +118,10 @@ class AddressService implements AddressFromLatLngInterface {
   /// match with the given [addressType] if exist in [addressList]
   ///
   /// if address is not present in [addressList] then return null
+  ///
+  /// [latitude] is the latitude of desired address
+  /// [longitude] is the longitude of desired address
+  /// [gApiKey] the api key to get access of google geocoding apis
   Future<Address?> _getAddressByType({
     required double latitude,
     required double longitude,
@@ -141,7 +149,12 @@ class AddressService implements AddressFromLatLngInterface {
 
   /// Returns a best formatted address
   ///
-  /// best formatted address is the address that is best defined among a list of address
+  /// best formatted address is the address that is best defined among a list
+  /// of address
+  ///
+  /// [latitude] is the latitude of desired address
+  /// [longitude] is the longitude of desired address
+  /// [gApiKey] the api key to get access of google geocoding apis
   @override
   Future<String> getFormattedAddress({
     required double latitude,
@@ -159,7 +172,12 @@ class AddressService implements AddressFromLatLngInterface {
 
   /// Return premise address if available else returns null
   ///
-  /// premise address indicates a named location, usually a building or collection of buildings with a common name.
+  /// premise address indicates a named location, usually a building
+  /// or collection of buildings with a common name.
+  ///
+  /// [latitude] is the latitude of desired address
+  /// [longitude] is the longitude of desired address
+  /// [gApiKey] the api key to get access of google geocoding apis
   @override
   Future<Address?> getPremiseAddress({
     required double latitude,
@@ -174,26 +192,13 @@ class AddressService implements AddressFromLatLngInterface {
     );
   }
 
-  /// Returns route address if available else returns null
-  ///
-  /// routes address indicates a named route
-  @override
-  Future<Address?> getDirectionAddress({
-    required double latitude,
-    required double longitude,
-    required String gApiKey,
-  }) async {
-    return _getAddressByType(
-      latitude: latitude,
-      longitude: longitude,
-      gApiKey: gApiKey,
-      addressType: AddressType.route,
-    );
-  }
-
   /// Returns street address if available else returns null
   ///
   /// street address indicates a precise street address with street information.
+  ///
+  /// [latitude] is the latitude of desired address
+  /// [longitude] is the longitude of desired address
+  /// [gApiKey] the api key to get access of google geocoding apis
   @override
   Future<Address?> getStreetAddress({
     required double latitude,
@@ -208,8 +213,96 @@ class AddressService implements AddressFromLatLngInterface {
     );
   }
 
+  /// Returns route address if available else returns null
+  ///
+  /// routes address indicates a named route
+  ///
+  /// [latitude] is the latitude of desired address
+  /// [longitude] is the longitude of desired address
+  /// [gApiKey] the api key to get access of google geocoding apis
+  @override
+  Future<Address?> getDirectionAddress({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  }) async {
+    return _getAddressByType(
+      latitude: latitude,
+      longitude: longitude,
+      gApiKey: gApiKey,
+      addressType: AddressType.route,
+    );
+  }
+
+  /// Return establishment address if available else return null
+  ///
+  /// ESTABLISHMENT typically indicates a place that has not yet
+  /// been categorized.
+  ///
+  /// [latitude] is the latitude of desired address
+  /// [longitude] is the longitude of desired address
+  /// [gApiKey] the api key to get access of google geocoding apis
+  @override
+  Future<Address?> getEstablishmentAddress({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  }) {
+    return _getAddressByType(
+      latitude: latitude,
+      longitude: longitude,
+      gApiKey: gApiKey,
+      addressType: AddressType.establishment,
+    );
+  }
+
+  /// Returns plus_code address if available else returns null
+  ///
+  /// [latitude] is the latitude of desired address
+  /// [longitude] is the longitude of desired address
+  /// [gApiKey] the api key to get access of google geocoding apis
+  @override
+  Future<Address?> getPlusCodeAddress({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  }) {
+    return _getAddressByType(
+      latitude: latitude,
+      longitude: longitude,
+      gApiKey: gApiKey,
+      addressType: AddressType.plus_code,
+    );
+  }
+
+  /// Returns NeighborHood address if available else returns null
+  ///
+  /// NeighborHood address indicate the well known neighborhood hood address
+  /// near the given [latitude],[longitude]
+  ///
+  /// [latitude] is the latitude of desired address
+  /// [longitude] is the longitude of desired address
+  /// [gApiKey] the api key to get access of google geocoding apis
+  @override
+  Future<Address?> getNeighborhoodAddress({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  }) {
+    return _getAddressByType(
+      latitude: latitude,
+      longitude: longitude,
+      gApiKey: gApiKey,
+      addressType: AddressType.neighborhood,
+    );
+  }
+
   /// Returns the administrative address level 1 information
   /// of provided [latitude], [longitude]
+  ///
+  /// [latitude] is the latitude of desired address
+  /// [longitude] is the longitude of desired address
+  /// [gApiKey] the api key to get access of google geocoding apis
   @override
   Future<Address?> getAdministrativeAddress1({
     required double latitude,
@@ -226,6 +319,10 @@ class AddressService implements AddressFromLatLngInterface {
 
   /// Returns the administrative address level 2 information
   /// of provided [latitude], [longitude]
+  ///
+  /// [latitude] is the latitude of desired address
+  /// [longitude] is the longitude of desired address
+  /// [gApiKey] the api key to get access of google geocoding apis
   @override
   Future<Address?> getAdministrativeAddress2({
     required double latitude,
@@ -242,6 +339,10 @@ class AddressService implements AddressFromLatLngInterface {
 
   /// Returns the administrative address level 3 information
   /// of provided [latitude], [longitude]
+  ///
+  /// [latitude] is the latitude of desired address
+  /// [longitude] is the longitude of desired address
+  /// [gApiKey] the api key to get access of google geocoding apis
   @override
   Future<Address?> getAdministrativeAddress3({
     required double latitude,
@@ -260,6 +361,10 @@ class AddressService implements AddressFromLatLngInterface {
   ///
   /// COUNTRY indicates the national political entity,
   /// and is typically the highest order type returned by the Geocoder
+  ///
+  /// [latitude] is the latitude of desired address
+  /// [longitude] is the longitude of desired address
+  /// [gApiKey] the api key to get access of google geocoding apis
   @override
   Future<Address?> getCountryAddress({
     required double latitude,
@@ -271,57 +376,6 @@ class AddressService implements AddressFromLatLngInterface {
       longitude: longitude,
       gApiKey: gApiKey,
       addressType: AddressType.country,
-    );
-  }
-
-  /// Return establishment address if available else return null
-  ///
-  /// ESTABLISHMENT typically indicates a place that has not yet been categorized.
-  @override
-  Future<Address?> getEstablishmentAddress({
-    required double latitude,
-    required double longitude,
-    required String gApiKey,
-  }) {
-    return _getAddressByType(
-      latitude: latitude,
-      longitude: longitude,
-      gApiKey: gApiKey,
-      addressType: AddressType.establishment,
-    );
-  }
-
-
-  /// Returns NeighborHood address if available else returns null
-  ///
-  /// NeighborHood address indicate the well known neighborhood hood address near the
-  /// given [latitude],[longitude]
-  @override
-  Future<Address?> getNeighborhoodAddress({
-    required double latitude,
-    required double longitude,
-    required String gApiKey,
-  }) {
-    return _getAddressByType(
-      latitude: latitude,
-      longitude: longitude,
-      gApiKey: gApiKey,
-      addressType: AddressType.neighborhood,
-    );
-  }
-
-  /// Returns plus_code address if available else returns null
-  @override
-  Future<Address?> getPlusCodeAddress({
-    required double latitude,
-    required double longitude,
-    required String gApiKey,
-  }) {
-    return _getAddressByType(
-      latitude: latitude,
-      longitude: longitude,
-      gApiKey: gApiKey,
-      addressType: AddressType.plus_code,
     );
   }
 }
