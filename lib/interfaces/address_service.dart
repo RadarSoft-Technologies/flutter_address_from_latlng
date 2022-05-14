@@ -71,6 +71,20 @@ class AddressService implements AddressFromLatLngInterface {
     return finalAddress;
   }
 
+  String getKeyByType(AddressType addressType){
+    if(addressType == AddressType.premise) return 'premise';
+    if(addressType == AddressType.street_address) return 'street_address';
+    if(addressType == AddressType.establishment) return 'establishment';
+    if(addressType == AddressType.plus_code) return 'plus_code';
+    if(addressType == AddressType.route) return 'route';
+    if(addressType == AddressType.neighborhood) return 'neighborhood';
+    if(addressType == AddressType.administrative_area_level_1) return 'administrative_area_level_1';
+    if(addressType == AddressType.administrative_area_level_2) return 'administrative_area_level_2';
+    if(addressType == AddressType.administrative_area_level_3) return 'administrative_area_level_3';
+    if(addressType == AddressType.country) return 'country';
+    return '';
+  }
+
   /// This method returns an address from given [addressList] if any address
   /// match with the given [addressType] if exist in [addressList]
   ///
@@ -87,10 +101,13 @@ class AddressService implements AddressFromLatLngInterface {
       gApiKey: gApiKey,
     );
 
-    if (myAddress == null) return null;
+    if (myAddress == null) {
+      print('returning null 1');
+      return null;
+    }
 
     for (var v in myAddress.results) {
-      if (v.types.contains(addressType.toString())) {
+      if (v.types.contains(getKeyByType(addressType))) {
         return v;
       }
     }
