@@ -1,3 +1,7 @@
+
+/// A data class
+///
+/// Represents a HTTP response body from google geocode api
 class AddressResponse {
   PlusCode? plusCode;
   List<Address> results = [];

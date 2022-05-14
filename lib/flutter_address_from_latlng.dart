@@ -1,6 +1,6 @@
 library flutter_address_from_latlng;
 
-import 'package:flutter_address_from_latlng/src/base_address_arvice.dart';
+import 'package:flutter_address_from_latlng/src/base_address_service.dart';
 import 'package:flutter_address_from_latlng/src/address_service.dart';
 import 'package:flutter_address_from_latlng/src/address_response.dart';
 import 'package:flutter_address_from_latlng/src/address_repository.dart';

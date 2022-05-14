@@ -1,7 +1,7 @@
 import 'package:flutter_address_from_latlng/flutter_address_from_latlng.dart';
 import 'package:flutter_address_from_latlng/src/address_types.dart';
 import 'package:flutter_address_from_latlng/src/address_repository.dart';
-import 'package:flutter_address_from_latlng/src/base_address_arvice.dart';
+import 'package:flutter_address_from_latlng/src/base_address_service.dart';
 import 'package:flutter_address_from_latlng/src/string_utils.dart';
 import 'address_response.dart';
 

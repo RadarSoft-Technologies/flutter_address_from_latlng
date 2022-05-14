@@ -1,3 +1,7 @@
+
+/// enum class
+///
+/// Contains enumeration of address types supported by googles map geocode api
 enum AddressType{
   premise,
   street_address, //street_address
