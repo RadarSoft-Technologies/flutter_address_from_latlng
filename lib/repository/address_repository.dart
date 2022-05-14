@@ -2,16 +2,16 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../models/my_address.dart';
+import '../models/address_response.dart';
 
 class AddressRepository {
   /// This method makes a network call using[http] library and get an address list
-  /// from google [geocoding] api and returns a list of [Results] in [MyAddress] model
+  /// from google [geocoding] api and returns a list of [Address] in [AddressResponse] model
   ///
   /// [latitude] the latitude of the place that we wand to get address
   /// [longitude] the longitude of the place that we want to get address
   /// [gApiKey] is the key to access Google Geo APIs
-  Future<MyAddress?> getAddressFromCoordinate({
+  Future<AddressResponse?> getAddressFromCoordinate({
     required double latitude,
     required double longitude,
     required String gApiKey,
@@ -22,7 +22,7 @@ class AddressRepository {
       );
       final response = await http.get(url);
       if (response.statusCode == 200) {
-        return MyAddress.fromJson(jsonDecode(response.body));
+        return AddressResponse.fromJson(jsonDecode(response.body));
       }
     } catch (error) {
       return null;

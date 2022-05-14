@@ -1,18 +1,18 @@
-class MyAddress {
+class AddressResponse {
   PlusCode? plusCode;
-  List<Results> results = [];
+  List<Address> results = [];
   String? status;
 
-  MyAddress({this.plusCode, this.results = const [], this.status});
+  AddressResponse({this.plusCode, this.results = const [], this.status});
 
-  MyAddress.fromJson(Map<String, dynamic> json) {
+  AddressResponse.fromJson(Map<String, dynamic> json) {
     plusCode = json['plus_code'] != null
         ? PlusCode.fromJson(json['plus_code'])
         : null;
     if (json['results'] != null) {
-      results = <Results>[];
+      results = <Address>[];
       json['results'].forEach((v) {
-        results.add(Results.fromJson(v));
+        results.add(Address.fromJson(v));
       });
     }
     status = json['status'];
@@ -48,7 +48,7 @@ class PlusCode {
   }
 }
 
-class Results {
+class Address {
   List<AddressComponents> addressComponents = [];
   String? formattedAddress;
   Geometry? geometry;
@@ -56,7 +56,7 @@ class Results {
   List<String> types = [];
   PlusCode? plusCode;
 
-  Results(
+  Address(
       {this.addressComponents = const [],
         this.formattedAddress,
         this.geometry,
@@ -64,7 +64,7 @@ class Results {
         this.types = const [],
         this.plusCode});
 
-  Results.fromJson(Map<String, dynamic> json) {
+  Address.fromJson(Map<String, dynamic> json) {
     if (json['address_components'] != null) {
       addressComponents = <AddressComponents>[];
       json['address_components'].forEach((v) {

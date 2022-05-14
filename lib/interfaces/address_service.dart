@@ -1,7 +1,7 @@
 import 'package:flutter_address_from_latlng/repository/address_repository.dart';
 import 'package:flutter_address_from_latlng/interfaces/address_from_latlng_interface.dart';
 import 'package:flutter_address_from_latlng/utils/string_utils.dart';
-import '../models/my_address.dart';
+import '../models/address_response.dart';
 
 class AddressService implements AddressFromLatLngInterface {
   final AddressRepository repository;
@@ -13,14 +13,14 @@ class AddressService implements AddressFromLatLngInterface {
   });
 
   /// This method filter the address list objects which are present in
-  /// [MyAddress],s [Results] list and return a possible most optimized
+  /// [AddressResponse],s [Address] list and return a possible most optimized
   /// and most informative formatted address
   ///
   ///
   /// Gather addresses by analysing various criteria like [streetAddressList],
   /// [premiseAddressList], [subLocalityAddressList] and make a decision which
   /// address is more informative
-  String _filterAndGetFormattedAddress({required MyAddress? myAddress}) {
+  String _filterAndGetFormattedAddress({required AddressResponse? myAddress}) {
     if (myAddress == null || myAddress.status != 'OK' || myAddress.results.isEmpty) {
       return '';
     }
@@ -28,7 +28,7 @@ class AddressService implements AddressFromLatLngInterface {
     List<String> streetAddressList = [];
     List<String> premiseAddressList = [];
     List<String> subLocalityAddressList = [];
-    for (Results result in myAddress.results) {
+    for (Address result in myAddress.results) {
       /// street address
       if (result.types.contains('street_address')) {
         streetAddressList.add(result.formattedAddress ?? '');
@@ -70,18 +70,56 @@ class AddressService implements AddressFromLatLngInterface {
     return finalAddress;
   }
 
+
   @override
   Future<String> getFormattedAddress({
     required double latitude,
     required double longitude,
     required String gApiKey,
   }) async {
-    MyAddress? myAddress = await repository.getAddressFromCoordinate(
+    AddressResponse? myAddress = await repository.getAddressFromCoordinate(
       latitude: latitude,
       longitude: longitude,
       gApiKey: gApiKey,
     );
 
     return _filterAndGetFormattedAddress(myAddress: myAddress);
+  }
+
+  @override
+  Future<Address?> getPremiseAddress({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  }) async {
+    AddressResponse? res = await repository.getAddressFromCoordinate(
+      latitude: latitude,
+      longitude: longitude,
+      gApiKey: gApiKey,
+    );
+
+    if (res == null) return null;
+
+
+  }
+
+  @override
+  Future<Address?> getDirectionAddress({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  }) {
+    // TODO: implement getRouteAddress
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Address?> getStreetAddress({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  }) {
+    // TODO: implement getStreetAddress
+    throw UnimplementedError();
   }
 }
