@@ -1,11 +1,21 @@
+import 'package:flutter_address_from_latlng/flutter_address_from_latlng.dart';
 import 'package:flutter_address_from_latlng/models/address_types.dart';
 import 'package:flutter_address_from_latlng/repository/address_repository.dart';
 import 'package:flutter_address_from_latlng/interfaces/address_from_latlng_interface.dart';
 import 'package:flutter_address_from_latlng/utils/string_utils.dart';
 import '../models/address_response.dart';
 
+/// This class is the implementation of [AddressFromLatLngInterface]
+///
+///
+/// Implements all logical methods provided by [FlutterAddressFromLatLng]
 class AddressService implements AddressFromLatLngInterface {
+  /// instance of [AddressRepository] used for getting data from network
   final AddressRepository repository;
+
+  /// A utility class
+  ///
+  /// Provide string related utility methods to boost up development
   final StringUtils stringUtils;
 
   AddressService({
@@ -29,18 +39,20 @@ class AddressService implements AddressFromLatLngInterface {
     List<String> streetAddressList = [];
     List<String> premiseAddressList = [];
     List<String> subLocalityAddressList = [];
+    List<String> establishmentAddressList = [];
+
     for (Address result in myAddress.results) {
-      /// street address
       if (result.types.contains('street_address')) {
         streetAddressList.add(result.formattedAddress ?? '');
       }
 
-      /// premise address
       if (result.types.contains('premise')) {
         premiseAddressList.add(result.formattedAddress ?? '');
       }
+      if (result.types.contains('establishment')) {
+        establishmentAddressList.add(result.formattedAddress ?? '');
+      }
 
-      /// sublocality address
       if (result.types.contains('sublocality')) {
         subLocalityAddressList.add(result.formattedAddress ?? '');
       } else {
@@ -55,34 +67,47 @@ class AddressService implements AddressFromLatLngInterface {
     String premiseAddress = stringUtils.getMaxStringFromList(premiseAddressList);
     String streetAddress = stringUtils.getMaxStringFromList(streetAddressList);
     String subLocalityAddress = stringUtils.getMaxStringFromList(subLocalityAddressList);
+    String establishmentAddress = stringUtils.getMaxStringFromList(establishmentAddressList);
     String firstAddress = myAddress.results[0].formattedAddress ?? '';
 
-    String finalAddress =
-        premiseAddress.length > streetAddress.length ? premiseAddress : streetAddress;
-    finalAddress =
-        finalAddress.length > subLocalityAddress.length ? finalAddress : subLocalityAddress;
-    finalAddress = finalAddress.length > firstAddress.length ? finalAddress : firstAddress;
+    List<String> tempList = [
+      premiseAddress,
+      streetAddress,
+      subLocalityAddress,
+      establishmentAddress,
+      firstAddress
+    ];
 
-    //print('\n\npremise address      = $premiseAddress');
-    //print('street address       = $streetAddress');
-    //print('sub-locality address = $subLocalityAddress');
-    //print('first address        = ${myAddress.results.first.formattedAddress}');
-
-    return finalAddress;
+    return stringUtils.getMaxStringFromList(tempList);
   }
 
-  String getKeyByType(AddressType addressType){
-    if(addressType == AddressType.premise) return 'premise';
-    if(addressType == AddressType.street_address) return 'street_address';
-    if(addressType == AddressType.establishment) return 'establishment';
-    if(addressType == AddressType.plus_code) return 'plus_code';
-    if(addressType == AddressType.route) return 'route';
-    if(addressType == AddressType.neighborhood) return 'neighborhood';
-    if(addressType == AddressType.administrative_area_level_1) return 'administrative_area_level_1';
-    if(addressType == AddressType.administrative_area_level_2) return 'administrative_area_level_2';
-    if(addressType == AddressType.administrative_area_level_3) return 'administrative_area_level_3';
-    if(addressType == AddressType.country) return 'country';
-    return '';
+
+  /// returns a string [key] according to given [addressType]
+  String getKeyByType(AddressType addressType) {
+    switch (addressType) {
+      case AddressType.premise:
+        return 'premise';
+      case AddressType.street_address:
+        return 'street_address';
+      case AddressType.establishment:
+        return 'establishment';
+      case AddressType.plus_code:
+        return 'plus_code';
+      case AddressType.route:
+        return 'route';
+      case AddressType.neighborhood:
+        return 'neighborhood';
+      case AddressType.administrative_area_level_1:
+        return 'administrative_area_level_1';
+      case AddressType.administrative_area_level_2:
+        return 'administrative_area_level_2';
+      case AddressType.administrative_area_level_3:
+        return 'administrative_area_level_3';
+      case AddressType.country:
+        return 'country';
+      default:
+        return '';
+    }
   }
 
   /// This method returns an address from given [addressList] if any address
@@ -114,6 +139,9 @@ class AddressService implements AddressFromLatLngInterface {
     return null;
   }
 
+  /// Returns a best formatted address
+  ///
+  /// best formatted address is the address that is best defined among a list of address
   @override
   Future<String> getFormattedAddress({
     required double latitude,
@@ -129,6 +157,9 @@ class AddressService implements AddressFromLatLngInterface {
     return _filterAndGetFormattedAddress(myAddress: myAddress);
   }
 
+  /// Return premise address if available else returns null
+  ///
+  /// premise address indicates a named location, usually a building or collection of buildings with a common name.
   @override
   Future<Address?> getPremiseAddress({
     required double latitude,
@@ -143,6 +174,9 @@ class AddressService implements AddressFromLatLngInterface {
     );
   }
 
+  /// Returns route address if available else returns null
+  ///
+  /// routes address indicates a named route
   @override
   Future<Address?> getDirectionAddress({
     required double latitude,
@@ -157,6 +191,9 @@ class AddressService implements AddressFromLatLngInterface {
     );
   }
 
+  /// Returns street address if available else returns null
+  ///
+  /// street address indicates a precise street address with street information.
   @override
   Future<Address?> getStreetAddress({
     required double latitude,
@@ -171,6 +208,8 @@ class AddressService implements AddressFromLatLngInterface {
     );
   }
 
+  /// Returns the administrative address level 1 information
+  /// of provided [latitude], [longitude]
   @override
   Future<Address?> getAdministrativeAddress1({
     required double latitude,
@@ -185,6 +224,8 @@ class AddressService implements AddressFromLatLngInterface {
     );
   }
 
+  /// Returns the administrative address level 2 information
+  /// of provided [latitude], [longitude]
   @override
   Future<Address?> getAdministrativeAddress2({
     required double latitude,
@@ -199,6 +240,8 @@ class AddressService implements AddressFromLatLngInterface {
     );
   }
 
+  /// Returns the administrative address level 3 information
+  /// of provided [latitude], [longitude]
   @override
   Future<Address?> getAdministrativeAddress3({
     required double latitude,
@@ -213,6 +256,10 @@ class AddressService implements AddressFromLatLngInterface {
     );
   }
 
+  /// return Country Address if available else returns null
+  ///
+  /// COUNTRY indicates the national political entity,
+  /// and is typically the highest order type returned by the Geocoder
   @override
   Future<Address?> getCountryAddress({
     required double latitude,
@@ -227,6 +274,9 @@ class AddressService implements AddressFromLatLngInterface {
     );
   }
 
+  /// Return establishment address if available else return null
+  ///
+  /// ESTABLISHMENT typically indicates a place that has not yet been categorized.
   @override
   Future<Address?> getEstablishmentAddress({
     required double latitude,
@@ -241,6 +291,11 @@ class AddressService implements AddressFromLatLngInterface {
     );
   }
 
+
+  /// Returns NeighborHood address if available else returns null
+  ///
+  /// NeighborHood address indicate the well known neighborhood hood address near the
+  /// given [latitude],[longitude]
   @override
   Future<Address?> getNeighborhoodAddress({
     required double latitude,
@@ -255,6 +310,7 @@ class AddressService implements AddressFromLatLngInterface {
     );
   }
 
+  /// Returns plus_code address if available else returns null
   @override
   Future<Address?> getPlusCodeAddress({
     required double latitude,

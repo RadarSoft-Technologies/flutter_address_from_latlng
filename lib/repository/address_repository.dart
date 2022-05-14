@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import '../models/address_response.dart';
 
 class AddressRepository {
-  /// This method makes a network call using[http] library and get an address list
+  /// This method makes a http get call using[http] library and get an address list
   /// from google [geocoding] api and returns a list of [Address] in [AddressResponse] model
   ///
   /// [latitude] the latitude of the place that we wand to get address
