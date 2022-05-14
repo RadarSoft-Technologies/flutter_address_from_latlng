@@ -1,4 +1,4 @@
-import 'package:flutter_address_from_latlng/models/address_response.dart';
+import 'package:flutter_address_from_latlng/src/address_response.dart';
 
 abstract class BaseAddressService {
   /// Makes an HTTP get request and returns a formatted address from

@@ -1,9 +1,9 @@
 import 'package:flutter_address_from_latlng/flutter_address_from_latlng.dart';
-import 'package:flutter_address_from_latlng/models/address_types.dart';
-import 'package:flutter_address_from_latlng/repository/address_repository.dart';
-import 'package:flutter_address_from_latlng/interfaces/base_address_arvice.dart';
+import 'package:flutter_address_from_latlng/src/address_types.dart';
+import 'package:flutter_address_from_latlng/src/address_repository.dart';
+import 'package:flutter_address_from_latlng/src/base_address_arvice.dart';
 import 'package:flutter_address_from_latlng/src/string_utils.dart';
-import '../models/address_response.dart';
+import 'address_response.dart';
 
 /// This class is the implementation of [BaseAddressService]
 ///

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../models/address_response.dart';
+import 'address_response.dart';
 
 /// A repository class
 ///

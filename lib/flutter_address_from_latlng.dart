@@ -1,9 +1,9 @@
 library flutter_address_from_latlng;
 
-import 'package:flutter_address_from_latlng/interfaces/base_address_arvice.dart';
-import 'package:flutter_address_from_latlng/interfaces/address_service.dart';
-import 'package:flutter_address_from_latlng/models/address_response.dart';
-import 'package:flutter_address_from_latlng/repository/address_repository.dart';
+import 'package:flutter_address_from_latlng/src/base_address_arvice.dart';
+import 'package:flutter_address_from_latlng/src/address_service.dart';
+import 'package:flutter_address_from_latlng/src/address_response.dart';
+import 'package:flutter_address_from_latlng/src/address_repository.dart';
 import 'package:flutter_address_from_latlng/src/string_utils.dart';
 
 /// The main class of our library
