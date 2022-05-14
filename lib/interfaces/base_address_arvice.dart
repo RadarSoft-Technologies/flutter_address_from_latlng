@@ -1,10 +1,11 @@
 import 'package:flutter_address_from_latlng/models/address_response.dart';
 
-abstract class AddressFromLatLngInterface {
-  /// This method returns an address from given [addressList] if any address
-  /// match with the given [addressType] if exist in [addressList]
+abstract class BaseAddressService {
+  /// Makes an HTTP get request and returns a formatted address from
+  /// an address list that are found from google geocoding api
   ///
-  /// if address is not present in [addressList] then return null
+  /// if address is not present in [addressList] then return 
+  /// an empty string
   ///
   /// [latitude] is the latitude of desired address
   /// [longitude] is the longitude of desired address

@@ -1,15 +1,15 @@
 import 'package:flutter_address_from_latlng/flutter_address_from_latlng.dart';
 import 'package:flutter_address_from_latlng/models/address_types.dart';
 import 'package:flutter_address_from_latlng/repository/address_repository.dart';
-import 'package:flutter_address_from_latlng/interfaces/address_from_latlng_interface.dart';
-import 'package:flutter_address_from_latlng/utils/string_utils.dart';
+import 'package:flutter_address_from_latlng/interfaces/base_address_arvice.dart';
+import 'package:flutter_address_from_latlng/src/string_utils.dart';
 import '../models/address_response.dart';
 
-/// This class is the implementation of [AddressFromLatLngInterface]
+/// This class is the implementation of [BaseAddressService]
 ///
 ///
 /// Implements all logical methods provided by [FlutterAddressFromLatLng]
-class AddressService implements AddressFromLatLngInterface {
+class AddressService implements BaseAddressService {
   /// instance of [AddressRepository] used for getting data from network
   final AddressRepository repository;
 

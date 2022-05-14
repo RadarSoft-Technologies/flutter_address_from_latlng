@@ -4,6 +4,9 @@ import 'package:http/http.dart' as http;
 
 import '../models/address_response.dart';
 
+/// A repository class
+///
+/// Provide functionality to making HTTP call to Google Geocode Api
 class AddressRepository {
   /// This method makes a http get call using[http] library and get an address list
   /// from google [geocoding] api and returns a list of [Address] in [AddressResponse] model
