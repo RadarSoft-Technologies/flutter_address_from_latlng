@@ -1,3 +1,4 @@
+import 'package:flutter_address_from_latlng/models/address_types.dart';
 import 'package:flutter_address_from_latlng/repository/address_repository.dart';
 import 'package:flutter_address_from_latlng/interfaces/address_from_latlng_interface.dart';
 import 'package:flutter_address_from_latlng/utils/string_utils.dart';
@@ -70,6 +71,31 @@ class AddressService implements AddressFromLatLngInterface {
     return finalAddress;
   }
 
+  /// This method returns an address from given [addressList] if any address
+  /// match with the given [addressType] if exist in [addressList]
+  ///
+  /// if address is not present in [addressList] then return null
+  Future<Address?> _getAddressByType({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+    required AddressType addressType,
+  }) async {
+    AddressResponse? myAddress = await repository.getAddressFromCoordinate(
+      latitude: latitude,
+      longitude: longitude,
+      gApiKey: gApiKey,
+    );
+
+    if (myAddress == null) return null;
+
+    for (var v in myAddress.results) {
+      if (v.types.contains(addressType.toString())) {
+        return v;
+      }
+    }
+    return null;
+  }
 
   @override
   Future<String> getFormattedAddress({
@@ -92,15 +118,12 @@ class AddressService implements AddressFromLatLngInterface {
     required double longitude,
     required String gApiKey,
   }) async {
-    AddressResponse? res = await repository.getAddressFromCoordinate(
+    return _getAddressByType(
       latitude: latitude,
       longitude: longitude,
       gApiKey: gApiKey,
+      addressType: AddressType.premise,
     );
-
-    if (res == null) return null;
-
-
   }
 
   @override
@@ -108,9 +131,13 @@ class AddressService implements AddressFromLatLngInterface {
     required double latitude,
     required double longitude,
     required String gApiKey,
-  }) {
-    // TODO: implement getRouteAddress
-    throw UnimplementedError();
+  }) async {
+    return _getAddressByType(
+      latitude: latitude,
+      longitude: longitude,
+      gApiKey: gApiKey,
+      addressType: AddressType.route,
+    );
   }
 
   @override
@@ -119,7 +146,109 @@ class AddressService implements AddressFromLatLngInterface {
     required double longitude,
     required String gApiKey,
   }) {
-    // TODO: implement getStreetAddress
-    throw UnimplementedError();
+    return _getAddressByType(
+      latitude: latitude,
+      longitude: longitude,
+      gApiKey: gApiKey,
+      addressType: AddressType.street_address,
+    );
+  }
+
+  @override
+  Future<Address?> getAdministrativeAddress1({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  }) {
+    return _getAddressByType(
+      latitude: latitude,
+      longitude: longitude,
+      gApiKey: gApiKey,
+      addressType: AddressType.administrative_area_level_1,
+    );
+  }
+
+  @override
+  Future<Address?> getAdministrativeAddress2({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  }) {
+    return _getAddressByType(
+      latitude: latitude,
+      longitude: longitude,
+      gApiKey: gApiKey,
+      addressType: AddressType.administrative_area_level_2,
+    );
+  }
+
+  @override
+  Future<Address?> getAdministrativeAddress3({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  }) {
+    return _getAddressByType(
+      latitude: latitude,
+      longitude: longitude,
+      gApiKey: gApiKey,
+      addressType: AddressType.administrative_area_level_3,
+    );
+  }
+
+  @override
+  Future<Address?> getCountryAddress({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  }) {
+    return _getAddressByType(
+      latitude: latitude,
+      longitude: longitude,
+      gApiKey: gApiKey,
+      addressType: AddressType.country,
+    );
+  }
+
+  @override
+  Future<Address?> getEstablishmentAddress({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  }) {
+    return _getAddressByType(
+      latitude: latitude,
+      longitude: longitude,
+      gApiKey: gApiKey,
+      addressType: AddressType.establishment,
+    );
+  }
+
+  @override
+  Future<Address?> getNeighborhoodAddress({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  }) {
+    return _getAddressByType(
+      latitude: latitude,
+      longitude: longitude,
+      gApiKey: gApiKey,
+      addressType: AddressType.neighborhood,
+    );
+  }
+
+  @override
+  Future<Address?> getPlusCodeAddress({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  }) {
+    return _getAddressByType(
+      latitude: latitude,
+      longitude: longitude,
+      gApiKey: gApiKey,
+      addressType: AddressType.plus_code,
+    );
   }
 }

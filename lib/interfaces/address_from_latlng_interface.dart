@@ -25,4 +25,45 @@ abstract class AddressFromLatLngInterface {
     required String gApiKey,
   });
 
+  Future<Address?> getEstablishmentAddress({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  });
+
+  Future<Address?> getPlusCodeAddress({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  });
+
+  Future<Address?> getNeighborhoodAddress({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  });
+
+  Future<Address?> getAdministrativeAddress1({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  });
+
+  Future<Address?> getAdministrativeAddress2({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  });
+
+  Future<Address?> getAdministrativeAddress3({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  });
+
+  Future<Address?> getCountryAddress({
+    required double latitude,
+    required double longitude,
+    required String gApiKey,
+  });
 }
