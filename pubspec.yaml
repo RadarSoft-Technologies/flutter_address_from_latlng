@@ -1,6 +1,6 @@
 name: flutter_address_from_latlng
 description: A Dart package to get addresses from latitude and longitude.Provide vast number of method to get verious types of location by latitude and longitude.
-version: 0.0.1
+version: 0.0.2
 homepage: 'https://github.com/saiful00000/flutter_address_from_latlng'
 
 environment:
