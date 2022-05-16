@@ -4,13 +4,13 @@
 /// Contains enumeration of address types supported by googles map geocode api
 enum AddressType{
   premise,
-  street_address, //street_address
+  streetAddress,
   establishment,
-  plus_code, //plus_code
-  route, //route
+  plusCode,
+  route,
   neighborhood,
-  administrative_area_level_1, //administrative_area_level_1
-  administrative_area_level_2, //administrative_area_level_2
-  administrative_area_level_3, //administrative_area_level_3
+  administrativeAreaLevel1,
+  administrativeAreaLevel2,
+  administrativeAreaLevel3,
   country,
 }

@@ -6,6 +6,7 @@ class AddressResponse {
   PlusCode? plusCode;
   List<Address> results = [];
   String? status;
+  String? errorMessage;
 
   AddressResponse({this.plusCode, this.results = const [], this.status});
 
@@ -20,6 +21,7 @@ class AddressResponse {
       });
     }
     status = json['status'];
+    errorMessage = json['error_message'];
   }
 
   Map<String, dynamic> toJson() {
@@ -29,6 +31,7 @@ class AddressResponse {
     }
     data['results'] = results.map((v) => v.toJson()).toList();
     data['status'] = status;
+    data['error_message'] = errorMessage;
     return data;
   }
 }

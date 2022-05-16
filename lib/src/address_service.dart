@@ -3,7 +3,6 @@ import 'package:flutter_address_from_latlng/src/address_types.dart';
 import 'package:flutter_address_from_latlng/src/address_repository.dart';
 import 'package:flutter_address_from_latlng/src/base_address_service.dart';
 import 'package:flutter_address_from_latlng/src/string_utils.dart';
-import 'address_response.dart';
 
 /// This class is the implementation of [BaseAddressService]
 ///
@@ -91,21 +90,21 @@ class AddressService implements BaseAddressService {
     switch (addressType) {
       case AddressType.premise:
         return 'premise';
-      case AddressType.street_address:
+      case AddressType.streetAddress:
         return 'street_address';
       case AddressType.establishment:
         return 'establishment';
-      case AddressType.plus_code:
+      case AddressType.plusCode:
         return 'plus_code';
       case AddressType.route:
         return 'route';
       case AddressType.neighborhood:
         return 'neighborhood';
-      case AddressType.administrative_area_level_1:
+      case AddressType.administrativeAreaLevel1:
         return 'administrative_area_level_1';
-      case AddressType.administrative_area_level_2:
+      case AddressType.administrativeAreaLevel2:
         return 'administrative_area_level_2';
-      case AddressType.administrative_area_level_3:
+      case AddressType.administrativeAreaLevel3:
         return 'administrative_area_level_3';
       case AddressType.country:
         return 'country';
@@ -135,8 +134,11 @@ class AddressService implements BaseAddressService {
     );
 
     if (myAddress == null) {
-      print('returning null 1');
       return null;
+    }
+
+    if(myAddress.status == 'REQUEST_DENIED'){
+      throw Exception(myAddress.errorMessage ?? '');
     }
 
     for (var v in myAddress.results) {
@@ -166,6 +168,14 @@ class AddressService implements BaseAddressService {
       longitude: longitude,
       googleApiKey: googleApiKey,
     );
+
+    if(myAddress == null){
+      return '';
+    }
+
+    if(myAddress.status == 'REQUEST_DENIED'){
+      throw Exception(myAddress.errorMessage ?? '');
+    }
 
     return _filterAndGetFormattedAddress(myAddress: myAddress);
   }
@@ -209,7 +219,7 @@ class AddressService implements BaseAddressService {
       latitude: latitude,
       longitude: longitude,
       googleApiKey: googleApiKey,
-      addressType: AddressType.street_address,
+      addressType: AddressType.streetAddress,
     );
   }
 
@@ -271,7 +281,7 @@ class AddressService implements BaseAddressService {
       latitude: latitude,
       longitude: longitude,
       googleApiKey: googleApiKey,
-      addressType: AddressType.plus_code,
+      addressType: AddressType.plusCode,
     );
   }
 
@@ -313,7 +323,7 @@ class AddressService implements BaseAddressService {
       latitude: latitude,
       longitude: longitude,
       googleApiKey: googleApiKey,
-      addressType: AddressType.administrative_area_level_1,
+      addressType: AddressType.administrativeAreaLevel1,
     );
   }
 
@@ -333,7 +343,7 @@ class AddressService implements BaseAddressService {
       latitude: latitude,
       longitude: longitude,
       googleApiKey: googleApiKey,
-      addressType: AddressType.administrative_area_level_2,
+      addressType: AddressType.administrativeAreaLevel2,
     );
   }
 
@@ -353,7 +363,7 @@ class AddressService implements BaseAddressService {
       latitude: latitude,
       longitude: longitude,
       googleApiKey: googleApiKey,
-      addressType: AddressType.administrative_area_level_3,
+      addressType: AddressType.administrativeAreaLevel3,
     );
   }
 

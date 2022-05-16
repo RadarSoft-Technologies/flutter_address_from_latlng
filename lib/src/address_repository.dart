@@ -23,7 +23,9 @@ class AddressRepository {
       final Uri url = Uri.parse(
         'https://maps.googleapis.com/maps/api/geocode/json?latlng=$latitude,$longitude&key=$googleApiKey',
       );
+
       final response = await http.get(url);
+
       if (response.statusCode == 200) {
         return AddressResponse.fromJson(jsonDecode(response.body));
       }
